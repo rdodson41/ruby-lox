@@ -1,5 +1,7 @@
 # Lox
 
+[![Build Status](https://travis-ci.org/rdodson41/ruby-lox.svg?branch=master)](https://travis-ci.org/rdodson41/ruby-lox)
+
 **Lox** is an implementation of the [Lox Language](https://github.com/munificent/craftinginterpreters/wiki/Lox-implementations) which is written in Ruby.
 
 ## Installation
