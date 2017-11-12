@@ -1,4 +1,4 @@
-require "lox/version"
+require 'lox/version'
 
 module Lox
   # Your code goes here...

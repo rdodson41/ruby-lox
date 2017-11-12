@@ -1,0 +1,7 @@
+require: rubocop-rspec
+
+Rails:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
