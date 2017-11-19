@@ -1,13 +1,31 @@
 require: rubocop-rspec
 
 AllCops:
+  EnabledByDefault: true
   TargetRubyVersion: 2.4
+
+Metrics/BlockLength:
+  Exclude:
+    - lox.gemspec
 
 Rails:
   Enabled: true
 
+Style/Copyright:
+  Enabled: false
+
 Style/Documentation:
+  Enabled: false
+
+Style/DocumentationMethod:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Style/MethodCallWithArgsParentheses:
+  Enabled: false
+
+Style/MissingElse:
+  Exclude:
+    - spec/spec_helper.rb
