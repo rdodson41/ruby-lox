@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['Richard E. Dodson']
   spec.email         = ['richard.elias.dodson@gmail.com']
 
-  spec.summary       = 'Lox is an implementation of the Lox Language ' \
+  spec.summary       = 'An implementation of the Lox Language ' \
     'which is written in Ruby.'
   spec.homepage      = 'https://github.com/rdodson41/ruby-lox'
   spec.license       = 'MIT'

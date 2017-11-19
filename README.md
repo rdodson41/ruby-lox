@@ -4,7 +4,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/827f986f775a6dbfc4e6/maintainability)](https://codeclimate.com/github/rdodson41/ruby-lox/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/827f986f775a6dbfc4e6/test_coverage)](https://codeclimate.com/github/rdodson41/ruby-lox/test_coverage)
 
-**Lox** is an implementation of the [Lox Language](https://github.com/munificent/craftinginterpreters/wiki/Lox-implementations) which is written in Ruby.
+The `lox` gem is an implementation of the [Lox Language](https://github.com/munificent/craftinginterpreters/wiki/Lox-implementations) which is written in Ruby.
 
 ## Installation
 
@@ -38,4 +38,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the **Lox** project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/rdodson41/lox/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Lox project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/rdodson41/lox/blob/master/CODE_OF_CONDUCT.md).
