@@ -9,9 +9,6 @@ Metrics/BlockLength:
   Exclude:
     - lox.gemspec
 
-Rails:
-  Enabled: true
-
 Style/Copyright:
   Enabled: false
 
