@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+find spec -type f -name *_spec.rb \
+  | xargs ag --only-matching '(?<=^RSpec\.describe )\w+(::\w+)*' \
+  | cut -f 3- -d : \
+  | xargs bundle exec mutant --use rspec
