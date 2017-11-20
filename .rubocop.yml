@@ -25,5 +25,4 @@ Style/MethodCallWithArgsParentheses:
   Enabled: false
 
 Style/MissingElse:
-  Exclude:
-    - spec/spec_helper.rb
+  Enabled: false
