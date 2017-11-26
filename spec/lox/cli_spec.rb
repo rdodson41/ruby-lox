@@ -59,4 +59,42 @@ RSpec.describe Lox::CLI do
       expect(scan).to have_received(:call)
     end
   end
+
+  describe '#lex' do
+    let :console do
+      instance_double(Lox::Console)
+    end
+
+    let :scanner do
+      instance_double(Lox::Scanner)
+    end
+
+    let :lexical_analyzer do
+      instance_double(Lox::LexicalAnalyzer)
+    end
+
+    let :lex do
+      instance_spy(Lox::Lex)
+    end
+
+    before do
+      allow(Lox::Console).to receive(:new).with(Readline) do
+        console
+      end
+      allow(Lox::Scanner).to receive(:new).with(console) do
+        scanner
+      end
+      allow(Lox::LexicalAnalyzer).to receive(:new).with(scanner) do
+        lexical_analyzer
+      end
+      allow(Lox::Lex).to receive(:new).with(lexical_analyzer, STDOUT) do
+        lex
+      end
+    end
+
+    it 'performs lexical analysis of characters from the console' do
+      cli.lex
+      expect(lex).to have_received(:call)
+    end
+  end
 end
