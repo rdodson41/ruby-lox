@@ -1,8 +1,5 @@
 require 'lox/console'
-require 'lox/lex'
 require 'lox/lexical_analyzer'
-require 'lox/read'
-require 'lox/scan'
 require 'lox/scanner'
 require 'thor'
 
@@ -11,19 +8,19 @@ module Lox
     desc 'read', 'Read lines from the console and ' \
                  'write them to standard output'
     def read
-      Read.new(console, STDOUT).call
+      console.each_line(&writer)
     end
 
     desc 'scan', 'Scan characters from the console and ' \
                  'write them to standard output'
     def scan
-      Scan.new(scanner, STDOUT).call
+      scanner.each_char(&writer)
     end
 
     desc 'lex', 'Perform lexical analysis of characters from the console and ' \
                 'write tokens to standard output'
     def lex
-      Lex.new(lexical_analyzer, STDOUT).call
+      lexical_analyzer.each_token(&writer)
     end
 
     private
@@ -38,6 +35,14 @@ module Lox
 
     def lexical_analyzer
       LexicalAnalyzer.new(scanner)
+    end
+
+    def writer
+      method(:write)
+    end
+
+    def write(line)
+      STDOUT.puts(line.inspect)
     end
   end
 end
