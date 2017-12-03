@@ -5,8 +5,18 @@ RSpec.describe Lox::CLI do
     described_class.new
   end
 
+  let :formatter do
+    instance_double(Lox::Formatter)
+  end
+
   let :command do
     instance_spy(Lox::Commands::Write)
+  end
+
+  before do
+    allow(Lox::Commands::Write).to receive(:new).with(formatter, STDOUT) do
+      command
+    end
   end
 
   describe '#read' do
@@ -26,8 +36,8 @@ RSpec.describe Lox::CLI do
       allow(Lox::Console).to receive(:new).with(Readline) do
         console
       end
-      allow(Lox::Commands::Write).to receive(:new).with(each_line, STDOUT) do
-        command
+      allow(Lox::Formatter).to receive(:new).with(each_line) do
+        formatter
       end
     end
 
@@ -61,8 +71,8 @@ RSpec.describe Lox::CLI do
       allow(Lox::Scanner).to receive(:new).with(console) do
         scanner
       end
-      allow(Lox::Commands::Write).to receive(:new).with(each_char, STDOUT) do
-        command
+      allow(Lox::Formatter).to receive(:new).with(each_char) do
+        formatter
       end
     end
 
@@ -96,8 +106,8 @@ RSpec.describe Lox::CLI do
       allow(Lox::LexicalAnalyzer).to receive(:new).with(scanner) do
         lexical_analyzer
       end
-      allow(Lox::Commands::Write).to receive(:new).with(each_token, STDOUT) do
-        command
+      allow(Lox::Formatter).to receive(:new).with(each_token) do
+        formatter
       end
     end
 
