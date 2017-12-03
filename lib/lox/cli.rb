@@ -1,3 +1,4 @@
+require 'lox/commands/write'
 require 'lox/console'
 require 'lox/lexical_analyzer'
 require 'lox/scanner'
@@ -5,22 +6,22 @@ require 'thor'
 
 module Lox
   class CLI < Thor
-    desc 'read', 'Read lines from the console and ' \
-                 'write them to standard output'
+    desc 'read', 'Read input from the console and ' \
+                 'write lines to standard output'
     def read
-      console.each_line(&writer)
+      Commands::Write.new(console.each_line, STDOUT).call
     end
 
-    desc 'scan', 'Scan characters from the console and ' \
-                 'write them to standard output'
+    desc 'scan', 'Scan input from the console and ' \
+                 'write characters to standard output'
     def scan
-      scanner.each_char(&writer)
+      Commands::Write.new(scanner.each_char, STDOUT).call
     end
 
-    desc 'lex', 'Perform lexical analysis of characters from the console and ' \
+    desc 'lex', 'Perform lexical analysis of input from the console and ' \
                 'write tokens to standard output'
     def lex
-      lexical_analyzer.each_token(&writer)
+      Commands::Write.new(lexical_analyzer.each_token, STDOUT).call
     end
 
     private
@@ -35,14 +36,6 @@ module Lox
 
     def lexical_analyzer
       LexicalAnalyzer.new(scanner)
-    end
-
-    def writer
-      method(:write)
-    end
-
-    def write(line)
-      STDOUT.puts(line.inspect)
     end
   end
 end

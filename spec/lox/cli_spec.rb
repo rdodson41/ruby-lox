@@ -5,43 +5,35 @@ RSpec.describe Lox::CLI do
     described_class.new
   end
 
+  let :command do
+    instance_spy(Lox::Commands::Write)
+  end
+
   describe '#read' do
     subject :read do
       cli.read
     end
 
     let :console do
-      instance_double(Lox::Console)
+      instance_double(Lox::Console, each_line: each_line)
     end
 
-    let :console_lines do
-      [
-        "print(\"Hello, world!\");\n"
-      ]
-    end
-
-    let :output_lines do
-      []
-    end
-
-    let :lines do
-      console_lines.map(&:inspect)
+    let :each_line do
+      instance_double(Enumerator)
     end
 
     before do
       allow(Lox::Console).to receive(:new).with(Readline) do
         console
       end
-      allow(console).to receive(:each_line) do |&block|
-        console_lines.each(&block)
-      end
-      allow(STDOUT).to receive(:puts) do |line|
-        output_lines << line
+      allow(Lox::Commands::Write).to receive(:new).with(each_line, STDOUT) do
+        command
       end
     end
 
     it 'writes lines to standard output' do
-      expect { read }.to change { output_lines }.to(lines)
+      read
+      expect(command).to have_received(:call)
     end
   end
 
@@ -55,38 +47,28 @@ RSpec.describe Lox::CLI do
     end
 
     let :scanner do
-      instance_double(Lox::Scanner)
+      instance_double(Lox::Scanner, each_char: each_char)
     end
 
-    let :scanner_characters do
-      "print(\"Hello, world!\");\n".chars
-    end
-
-    let :output_characters do
-      []
-    end
-
-    let :characters do
-      scanner_characters.map(&:inspect)
+    let :each_char do
+      instance_double(Enumerator)
     end
 
     before do
-      allow(Lox::Console).to receive(:new).with(Readline) do
+      allow(Lox::Console).to receive(:new) do
         console
       end
       allow(Lox::Scanner).to receive(:new).with(console) do
         scanner
       end
-      allow(scanner).to receive(:each_char) do |&block|
-        scanner_characters.each(&block)
-      end
-      allow(STDOUT).to receive(:puts) do |character|
-        output_characters << character
+      allow(Lox::Commands::Write).to receive(:new).with(each_char, STDOUT) do
+        command
       end
     end
 
     it 'writes characters to standard output' do
-      expect { scan }.to change { output_characters }.to(characters)
+      scan
+      expect(command).to have_received(:call)
     end
   end
 
@@ -95,56 +77,33 @@ RSpec.describe Lox::CLI do
       cli.lex
     end
 
-    let :console do
-      instance_double(Lox::Console)
-    end
-
     let :scanner do
       instance_double(Lox::Scanner)
     end
 
     let :lexical_analyzer do
-      instance_double(Lox::LexicalAnalyzer)
+      instance_double(Lox::LexicalAnalyzer, each_token: each_token)
     end
 
-    let :lexical_analyzer_tokens do
-      [
-        [:identifier, 'print'],
-        ['('],
-        [:string, 'Hello, world!'],
-        [')'],
-        [';']
-      ]
-    end
-
-    let :output_tokens do
-      []
-    end
-
-    let :tokens do
-      lexical_analyzer_tokens.map(&:inspect)
+    let :each_token do
+      instance_double(Enumerator)
     end
 
     before do
-      allow(Lox::Console).to receive(:new).with(Readline) do
-        console
-      end
-      allow(Lox::Scanner).to receive(:new).with(console) do
+      allow(Lox::Scanner).to receive(:new) do
         scanner
       end
       allow(Lox::LexicalAnalyzer).to receive(:new).with(scanner) do
         lexical_analyzer
       end
-      allow(lexical_analyzer).to receive(:each_token) do |&block|
-        lexical_analyzer_tokens.each(&block)
-      end
-      allow(STDOUT).to receive(:puts) do |token|
-        output_tokens << token
+      allow(Lox::Commands::Write).to receive(:new).with(each_token, STDOUT) do
+        command
       end
     end
 
     it 'writes tokens to standard output' do
-      expect { lex }.to change { output_tokens }.to(tokens)
+      lex
+      expect(command).to have_received(:call)
     end
   end
 end
