@@ -34,7 +34,9 @@ module Lox
         match_identifier(characters, character, &block)
       when /[!=<>]/
         match_operator(characters, character, &block)
-      when %r{[(){},.\-+;*\/]}
+        # rubocop:disable Style/RegexpLiteral
+      when /[(){},.\-+;*\/]/
+        # rubocop:enable Style/RegexpLiteral
         yield([character])
       else
         raise(InvalidCharacter, character)
@@ -51,7 +53,6 @@ module Lox
       yield([:integer, Integer(lexeme)])
     rescue StopIteration
       yield([:integer, Integer(lexeme)])
-      raise
     end
 
     def match_string(characters, lexeme)
@@ -67,7 +68,6 @@ module Lox
       yield([:identifier, lexeme])
     rescue StopIteration
       yield([:identifier, lexeme])
-      raise
     end
 
     def match_operator(characters, lexeme)
@@ -75,7 +75,6 @@ module Lox
       yield([lexeme])
     rescue StopIteration
       yield([lexeme])
-      raise
     end
   end
 end

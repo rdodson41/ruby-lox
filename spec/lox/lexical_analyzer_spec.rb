@@ -20,33 +20,18 @@ RSpec.describe Lox::LexicalAnalyzer do
       end
     end
 
+    around do |example|
+      Timeout.timeout(1, &example)
+    end
+
     context 'with a comment' do
       let :input_characters do
-        '# this is a comment'.chars
-      end
-
-      let :tokens do
-        []
-      end
-
-      it 'yields tokens' do
-        expect { |block| each_token.each(&block) }
-          .to yield_successive_args(*tokens)
-      end
-    end
-
-    context 'with an expression' do
-      let :input_characters do
-        'index == 12 + 34'.chars
+        "# Your first Lox program!\nprint\n".chars
       end
 
       let :tokens do
         [
-          [:identifier, 'index'],
-          ['=='],
-          [:integer, 12],
-          ['+'],
-          [:integer, 34]
+          [:identifier, 'print']
         ]
       end
 
@@ -56,38 +41,14 @@ RSpec.describe Lox::LexicalAnalyzer do
       end
     end
 
-    context 'with an expression' do
+    context 'with an integer' do
       let :input_characters do
-        'count != 56 * index'.chars
+        "1234;\n".chars
       end
 
       let :tokens do
         [
-          [:identifier, 'count'],
-          ['!='],
-          [:integer, 56],
-          ['*'],
-          [:identifier, 'index']
-        ]
-      end
-
-      it 'yields tokens' do
-        expect { |block| each_token.each(&block) }
-          .to yield_successive_args(*tokens)
-      end
-    end
-
-    context 'with a statement' do
-      let :input_characters do
-        "print(\"Hello, world!\");\n".chars
-      end
-
-      let :tokens do
-        [
-          [:identifier, 'print'],
-          ['('],
-          [:string, 'Hello, world!'],
-          [')'],
+          [:integer, 1234],
           [';']
         ]
       end
@@ -95,6 +56,168 @@ RSpec.describe Lox::LexicalAnalyzer do
       it 'yields tokens' do
         expect { |block| each_token.each(&block) }
           .to yield_successive_args(*tokens)
+      end
+    end
+
+    context 'with a string' do
+      let :input_characters do
+        "\"Hello, world!\"\n".chars
+      end
+
+      let :tokens do
+        [
+          [:string, 'Hello, world!']
+        ]
+      end
+
+      it 'yields tokens' do
+        expect { |block| each_token.each(&block) }
+          .to yield_successive_args(*tokens)
+      end
+    end
+
+    context 'with an identifier' do
+      let :input_characters do
+        "print\n".chars
+      end
+
+      let :tokens do
+        [
+          [:identifier, 'print']
+        ]
+      end
+
+      it 'yields tokens' do
+        expect { |block| each_token.each(&block) }
+          .to yield_successive_args(*tokens)
+      end
+    end
+
+    context 'with an operator' do
+      let :input_characters do
+        ";\n".chars
+      end
+
+      let :tokens do
+        [
+          [';']
+        ]
+      end
+
+      it 'yields tokens' do
+        expect { |block| each_token.each(&block) }
+          .to yield_successive_args(*tokens)
+      end
+    end
+
+    context 'with a non-compound operator' do
+      let :input_characters do
+        "<\n".chars
+      end
+
+      let :tokens do
+        [
+          ['<']
+        ]
+      end
+
+      it 'yields tokens' do
+        expect { |block| each_token.each(&block) }
+          .to yield_successive_args(*tokens)
+      end
+    end
+
+    context 'with a compound operator' do
+      let :input_characters do
+        "<=\n".chars
+      end
+
+      let :tokens do
+        [
+          ['<=']
+        ]
+      end
+
+      it 'yields tokens' do
+        expect { |block| each_token.each(&block) }
+          .to yield_successive_args(*tokens)
+      end
+    end
+
+    context 'with a terminating integer' do
+      let :input_characters do
+        '1234'.chars
+      end
+
+      let :tokens do
+        [
+          [:integer, 1234]
+        ]
+      end
+
+      it 'yields tokens' do
+        expect { |block| each_token.each(&block) }
+          .to yield_successive_args(*tokens)
+      end
+    end
+
+    context 'with a terminating identifier' do
+      let :input_characters do
+        'print'.chars
+      end
+
+      let :tokens do
+        [
+          [:identifier, 'print']
+        ]
+      end
+
+      it 'yields tokens' do
+        expect { |block| each_token.each(&block) }
+          .to yield_successive_args(*tokens)
+      end
+    end
+
+    context 'with a terminating, non-compound operator' do
+      let :input_characters do
+        '<'.chars
+      end
+
+      let :tokens do
+        [
+          ['<']
+        ]
+      end
+
+      it 'yields tokens' do
+        expect { |block| each_token.each(&block) }
+          .to yield_successive_args(*tokens)
+      end
+    end
+
+    context 'with an invalid character' do
+      let :input_characters do
+        '&'.chars
+      end
+
+      it 'raises an error' do
+        expect { each_token.to_a }.to raise_error(
+          Lox::LexicalAnalyzer::InvalidCharacter,
+          'Invalid character: &'
+        )
+      end
+    end
+
+    context 'with an unterminated string' do
+      let :input_characters do
+        '"Hello, world!'.chars
+      end
+
+      it 'raises an error' do
+        expect { each_token.to_a }.to raise_error(
+          Lox::LexicalAnalyzer::UnterminatedString,
+          'Unterminated string: "Hello, world!'
+        )
       end
     end
   end
