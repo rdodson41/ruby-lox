@@ -1,3 +1,4 @@
+require 'lox/core_ext/string'
 require 'lox/lexical_analyzer/invalid_character'
 require 'lox/lexical_analyzer/unterminated_string'
 
