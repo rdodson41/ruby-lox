@@ -6,7 +6,9 @@ RSpec.describe Lox::Commands::Write do
   end
 
   let :objects do
-    Array.new(2) { instance_double(Object) }
+    Array.new(2) do
+      instance_double(Object)
+    end
   end
 
   let :output do
