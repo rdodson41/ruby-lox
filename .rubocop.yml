@@ -8,6 +8,7 @@ AllCops:
 Metrics/BlockLength:
   Exclude:
     - lox.gemspec
+    - spec/**/*_spec.rb
 
 Style/Copyright:
   Enabled: false
