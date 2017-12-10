@@ -24,117 +24,27 @@ RSpec.describe Lox::LexicalAnalyzer do
       Timeout.timeout(1, &example)
     end
 
-    context 'with a comment' do
+    context 'with a small program' do
       let :input_characters do
-        "# Your first Lox program!\nprint\n".chars
+        "# Your first Lox program!\n" \
+        "print(\"Hello, world!\");\n" \
+        "!(1 == 2);\n".chars
       end
 
       let :tokens do
         [
-          [:identifier, 'print']
-        ]
-      end
-
-      it 'yields tokens' do
-        expect { |block| each_token.each(&block) }
-          .to yield_successive_args(*tokens)
-      end
-    end
-
-    context 'with an integer' do
-      let :input_characters do
-        "1234;\n".chars
-      end
-
-      let :tokens do
-        [
-          [:integer, 1234],
+          [:identifier, 'print'],
+          ['('],
+          [:string, 'Hello, world!'],
+          [')'],
+          [';'],
+          ['!'],
+          ['('],
+          [:integer, 1],
+          ['=='],
+          [:integer, 2],
+          [')'],
           [';']
-        ]
-      end
-
-      it 'yields tokens' do
-        expect { |block| each_token.each(&block) }
-          .to yield_successive_args(*tokens)
-      end
-    end
-
-    context 'with a string' do
-      let :input_characters do
-        "\"Hello, world!\"\n".chars
-      end
-
-      let :tokens do
-        [
-          [:string, 'Hello, world!']
-        ]
-      end
-
-      it 'yields tokens' do
-        expect { |block| each_token.each(&block) }
-          .to yield_successive_args(*tokens)
-      end
-    end
-
-    context 'with an identifier' do
-      let :input_characters do
-        "print\n".chars
-      end
-
-      let :tokens do
-        [
-          [:identifier, 'print']
-        ]
-      end
-
-      it 'yields tokens' do
-        expect { |block| each_token.each(&block) }
-          .to yield_successive_args(*tokens)
-      end
-    end
-
-    context 'with an operator' do
-      let :input_characters do
-        ";\n".chars
-      end
-
-      let :tokens do
-        [
-          [';']
-        ]
-      end
-
-      it 'yields tokens' do
-        expect { |block| each_token.each(&block) }
-          .to yield_successive_args(*tokens)
-      end
-    end
-
-    context 'with a non-compound operator' do
-      let :input_characters do
-        "<\n".chars
-      end
-
-      let :tokens do
-        [
-          ['<']
-        ]
-      end
-
-      it 'yields tokens' do
-        expect { |block| each_token.each(&block) }
-          .to yield_successive_args(*tokens)
-      end
-    end
-
-    context 'with a compound operator' do
-      let :input_characters do
-        "<=\n".chars
-      end
-
-      let :tokens do
-        [
-          ['<=']
         ]
       end
 

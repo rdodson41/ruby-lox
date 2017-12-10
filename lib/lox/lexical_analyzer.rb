@@ -12,70 +12,96 @@ module Lox
 
     def each_token(&block)
       return enum_for(:each_token) unless block_given?
-      characters = input.each_char
-      loop do
-        match_token(characters, &block)
+      state = :default
+      lexeme = nil
+      input.each_char do |character|
+        state, lexeme = method(state).call(lexeme, character, &block)
       end
+      eof(state, lexeme, &block)
     end
 
-    private
-
-    # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
-    def match_token(characters, &block)
-      case character = characters.next
+    # rubocop:disable Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/MethodLength
+    def default(_lexeme, character)
+      case character
       when /\s/
-        nil
+        :default
       when /[#]/
-        match_comment(characters)
+        :comment
       when /\d/
-        match_integer(characters, character, &block)
+        [:integer, character]
       when /["]/
-        match_string(characters, character, &block)
+        [:string, character]
       when /[a-zA-Z_]/
-        match_identifier(characters, character, &block)
+        [:identifier, character]
       when /[!=<>]/
-        match_operator(characters, character, &block)
-        # rubocop:disable Style/RegexpLiteral
-      when /[(){},.\-+;*\/]/
-        # rubocop:enable Style/RegexpLiteral
+        [:operator, character]
+      when %r{[(){},.\-+;*\/]}
         yield([character])
+        :default
       else
         raise(InvalidCharacter, character)
       end
     end
-    # rubocop:enable Metrics/CyclomaticComplexity, Metrics/MethodLength
+    # rubocop:enable Metrics/MethodLength
+    # rubocop:enable Metrics/CyclomaticComplexity
 
-    def match_comment(characters)
-      characters.next while characters.peek.match?(/./)
+    def comment(_lexeme, character)
+      if character.match?(/./)
+        :comment
+      else
+        :default
+      end
     end
 
-    def match_integer(characters, lexeme)
-      lexeme << characters.next while characters.peek.match?(/\d/)
-      yield([:integer, Integer(lexeme)])
-    rescue StopIteration
-      yield([:integer, Integer(lexeme)])
+    def integer(lexeme, character, &block)
+      if character.match?(/\d/)
+        [:integer, lexeme + character]
+      else
+        yield([:integer, Integer(lexeme)])
+        default(nil, character, &block)
+      end
     end
 
-    def match_string(characters, lexeme)
-      lexeme << characters.next until characters.peek.match?(/["]/)
-      lexeme << characters.next
-      yield([:string, lexeme[1..-2]])
-    rescue StopIteration
-      raise(UnterminatedString, lexeme)
+    def string(lexeme, character)
+      if character.match?(/["]/)
+        yield([:string, lexeme[1..-1]])
+        :default
+      else
+        [:string, lexeme + character]
+      end
     end
 
-    def match_identifier(characters, lexeme)
-      lexeme << characters.next while characters.peek.match?(/\w/)
-      yield([:identifier, lexeme])
-    rescue StopIteration
-      yield([:identifier, lexeme])
+    def identifier(lexeme, character, &block)
+      if character.match?(/\w/)
+        [:identifier, lexeme + character]
+      else
+        yield([:identifier, lexeme])
+        default(nil, character, &block)
+      end
     end
 
-    def match_operator(characters, lexeme)
-      lexeme << characters.next if characters.peek.match?(/[=]/)
-      yield([lexeme])
-    rescue StopIteration
-      yield([lexeme])
+    def operator(lexeme, character, &block)
+      if character.match?(/[=]/)
+        yield([lexeme + character])
+        :default
+      else
+        yield([lexeme])
+        default(nil, character, &block)
+      end
+    end
+
+    def eof(state, lexeme)
+      case state
+      when :integer
+        yield([:integer, Integer(lexeme)])
+      when :string
+        raise(UnterminatedString, lexeme)
+      when :identifier
+        yield([:identifier, lexeme])
+      when :operator
+        yield([lexeme])
+      end
     end
   end
 end
