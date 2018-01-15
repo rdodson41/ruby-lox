@@ -24,6 +24,3 @@ Style/FrozenStringLiteralComment:
 
 Style/MethodCallWithArgsParentheses:
   Enabled: false
-
-Style/MissingElse:
-  Enabled: false
