@@ -25,6 +25,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'codeclimate-test-reporter'
+  spec.add_development_dependency 'mutant'
   spec.add_development_dependency 'mutant-rspec'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'pry-byebug'
@@ -33,6 +34,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'rubocop-rspec'
   spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'travis'
 
   spec.required_ruby_version = '~> 2.2'
 end
