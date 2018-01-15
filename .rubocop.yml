@@ -3,7 +3,7 @@ require: rubocop-rspec
 AllCops:
   DisplayCopNames: true
   EnabledByDefault: true
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.2
 
 Metrics/BlockLength:
   Exclude:
