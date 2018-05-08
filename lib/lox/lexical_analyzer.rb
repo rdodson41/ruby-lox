@@ -1,4 +1,3 @@
-require 'lox/core_ext/string'
 require 'lox/lexical_analyzer/invalid_character'
 require 'lox/lexical_analyzer/invalid_state'
 require 'lox/lexical_analyzer/unterminated_string'
@@ -48,7 +47,7 @@ module Lox
     # rubocop:enable Metrics/MethodLength
 
     def comment(_lexeme, character)
-      if character.match?(/./)
+      if character =~ /./
         :comment
       else
         :default
@@ -56,7 +55,7 @@ module Lox
     end
 
     def integer(lexeme, character, &block)
-      if character.match?(/\d/)
+      if character =~ /\d/
         [:integer, lexeme + character]
       else
         yield([:integer, Integer(lexeme)])
@@ -65,7 +64,7 @@ module Lox
     end
 
     def string(lexeme, character)
-      if character.match?(/["]/)
+      if character =~ /["]/
         yield([:string, lexeme[1..-1]])
         :default
       else
@@ -74,7 +73,7 @@ module Lox
     end
 
     def identifier(lexeme, character, &block)
-      if character.match?(/\w/)
+      if character =~ /\w/
         [:identifier, lexeme + character]
       else
         yield([:identifier, lexeme])
@@ -83,7 +82,7 @@ module Lox
     end
 
     def operator(lexeme, character, &block)
-      if character.match?(/[=]/)
+      if character =~ /[=]/
         yield([lexeme + character])
         :default
       else
