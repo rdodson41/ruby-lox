@@ -1,8 +1,8 @@
-require 'lox/commands/write'
 require 'lox/console'
 require 'lox/formatter'
 require 'lox/lexical_analyzer'
 require 'lox/scanner'
+require 'lox/write'
 require 'thor'
 
 module Lox
@@ -10,19 +10,19 @@ module Lox
     desc 'read', 'Read input from the console and ' \
                  'write lines to standard output'
     def read
-      Commands::Write.new(lines, STDOUT).call
+      Write.new(lines, STDOUT).call
     end
 
     desc 'scan', 'Scan input from the console and ' \
                  'write characters to standard output'
     def scan
-      Commands::Write.new(characters, STDOUT).call
+      Write.new(characters, STDOUT).call
     end
 
     desc 'lex', 'Perform lexical analysis of input from the console and ' \
                 'write tokens to standard output'
     def lex
-      Commands::Write.new(tokens, STDOUT).call
+      Write.new(tokens, STDOUT).call
     end
 
     private
