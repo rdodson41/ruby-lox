@@ -10,11 +10,11 @@ RSpec.describe Lox::CLI do
   end
 
   let :command do
-    instance_spy(Lox::Commands::Write)
+    instance_spy(Lox::Write)
   end
 
   before do
-    allow(Lox::Commands::Write).to receive(:new).with(formatter, STDOUT) do
+    allow(Lox::Write).to receive(:new).with(formatter, STDOUT) do
       command
     end
   end
