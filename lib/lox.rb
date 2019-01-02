@@ -7,5 +7,6 @@ require('lox/version')
 require('lox/write')
 
 module Lox
+  class Error < StandardError; end
   # Your code goes here...
 end
