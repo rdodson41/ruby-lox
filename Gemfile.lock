@@ -17,8 +17,6 @@ GEM
       equalizer (~> 0.0.11)
     ast (2.4.0)
     byebug (10.0.2)
-    codeclimate-test-reporter (1.0.7)
-      simplecov
     coderay (1.1.2)
     concord (0.1.5)
       adamantium (~> 0.2.0)
@@ -118,7 +116,6 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
-  codeclimate-test-reporter
   lox!
   mutant
   mutant-rspec

@@ -24,7 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'thor'
 
   spec.add_development_dependency 'bundler'
-  spec.add_development_dependency 'codeclimate-test-reporter'
   spec.add_development_dependency 'mutant'
   spec.add_development_dependency 'mutant-rspec'
   spec.add_development_dependency 'pry'
