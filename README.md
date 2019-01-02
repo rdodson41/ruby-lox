@@ -1,5 +1,6 @@
 # Lox
 
+[![Gem Version](https://badge.fury.io/rb/lox.svg)](https://badge.fury.io/rb/lox)
 [![Build Status](https://travis-ci.org/rdodson41/ruby-lox.svg?branch=master)](https://travis-ci.org/rdodson41/ruby-lox)
 [![Maintainability](https://api.codeclimate.com/v1/badges/827f986f775a6dbfc4e6/maintainability)](https://codeclimate.com/github/rdodson41/ruby-lox/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/827f986f775a6dbfc4e6/test_coverage)](https://codeclimate.com/github/rdodson41/ruby-lox/test_coverage)
