@@ -12,6 +12,7 @@ module Lox
 
     def each_token(&block)
       return enum_for(:each_token) unless block_given?
+
       state = :default
       lexeme = nil
       input.each_char do |character|

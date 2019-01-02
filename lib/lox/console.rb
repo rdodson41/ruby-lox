@@ -8,6 +8,7 @@ module Lox
 
     def each_line
       return enum_for(:each_line) unless block_given?
+
       while (line = readline)
         yield("#{line}\n")
       end

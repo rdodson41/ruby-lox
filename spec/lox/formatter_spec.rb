@@ -33,7 +33,7 @@ RSpec.describe(Lox::Formatter) do
     end
 
     it 'enumerates objects lazily' do
-      expect { each.take(1).force }.to(change { terminal }.by(['$ ']))
+      expect { each.take(1).force }.to(change(terminal, :dup).by(['$ ']))
     end
   end
 end

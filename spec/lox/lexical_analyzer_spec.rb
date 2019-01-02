@@ -116,7 +116,7 @@ RSpec.describe(Lox::LexicalAnalyzer) do
           .to(raise_error(
                 Lox::LexicalAnalyzer::InvalidCharacter,
                 'Invalid character: &'
-          ))
+              ))
       end
     end
 
@@ -130,7 +130,7 @@ RSpec.describe(Lox::LexicalAnalyzer) do
           .to(raise_error(
                 Lox::LexicalAnalyzer::UnterminatedString,
                 'Unterminated string: "Hello, world!'
-          ))
+              ))
       end
     end
   end
@@ -189,7 +189,7 @@ RSpec.describe(Lox::LexicalAnalyzer) do
           .to(raise_error(
                 Lox::LexicalAnalyzer::UnterminatedString,
                 'Unterminated string: "Hello, world!'
-          ))
+              ))
       end
     end
 
@@ -249,7 +249,7 @@ RSpec.describe(Lox::LexicalAnalyzer) do
           .to(raise_error(
                 Lox::LexicalAnalyzer::InvalidState,
                 'Invalid state: invalid'
-          ))
+              ))
       end
     end
   end
