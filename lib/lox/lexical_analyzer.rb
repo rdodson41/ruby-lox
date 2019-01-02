@@ -1,6 +1,6 @@
-require 'lox/lexical_analyzer/invalid_character'
-require 'lox/lexical_analyzer/invalid_state'
-require 'lox/lexical_analyzer/unterminated_string'
+require('lox/lexical_analyzer/invalid_character')
+require('lox/lexical_analyzer/invalid_state')
+require('lox/lexical_analyzer/unterminated_string')
 
 module Lox
   class LexicalAnalyzer

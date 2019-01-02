@@ -1,9 +1,9 @@
-require 'lox/console'
-require 'lox/formatter'
-require 'lox/lexical_analyzer'
-require 'lox/scanner'
-require 'lox/write'
-require 'thor'
+require('lox/console')
+require('lox/formatter')
+require('lox/lexical_analyzer')
+require('lox/scanner')
+require('lox/write')
+require('thor')
 
 module Lox
   class CLI < Thor

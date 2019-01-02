@@ -1,6 +1,6 @@
-require 'lox/write'
+require('lox/write')
 
-RSpec.describe Lox::Write do
+RSpec.describe(Lox::Write) do
   subject :write do
     described_class.new(objects, output)
   end
@@ -21,12 +21,12 @@ RSpec.describe Lox::Write do
     end
 
     before do
-      allow(output).to receive(:puts)
+      allow(output).to(receive(:puts))
     end
 
     it 'writes the objects to the output' do
       call
-      expect(output).to have_received(:puts)
+      expect(output).to(have_received(:puts))
     end
   end
 end

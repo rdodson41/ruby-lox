@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'bundler/setup'
-require 'lox/cli'
+require('bundler/setup')
+require('lox/cli')
 
 Lox::CLI.start(ARGV)

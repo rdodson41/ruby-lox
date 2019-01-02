@@ -1,8 +1,8 @@
-require 'lox/console'
-require 'readline'
-require 'timeout'
+require('lox/console')
+require('readline')
+require('timeout')
 
-RSpec.describe Lox::Console do
+RSpec.describe(Lox::Console) do
   subject :console do
     described_class.new(terminal)
   end
@@ -29,7 +29,7 @@ RSpec.describe Lox::Console do
     end
 
     before do
-      allow(terminal).to receive(:readline).with('$ ', true) do
+      allow(terminal).to(receive(:readline).with('$ ', true)) do
         terminal_lines.shift
       end
     end
@@ -39,7 +39,8 @@ RSpec.describe Lox::Console do
     end
 
     it 'yields lines' do
-      expect { |block| each_line.each(&block) }.to yield_successive_args(*lines)
+      expect { |block| each_line.each(&block) }
+        .to(yield_successive_args(*lines))
     end
   end
 end

@@ -1,6 +1,6 @@
-require 'lox/cli'
+require('lox/cli')
 
-RSpec.describe Lox::CLI do
+RSpec.describe(Lox::CLI) do
   subject :cli do
     described_class.new
   end
@@ -14,7 +14,7 @@ RSpec.describe Lox::CLI do
   end
 
   before do
-    allow(Lox::Write).to receive(:new).with(formatter, STDOUT) do
+    allow(Lox::Write).to(receive(:new).with(formatter, STDOUT)) do
       command
     end
   end
@@ -33,17 +33,17 @@ RSpec.describe Lox::CLI do
     end
 
     before do
-      allow(Lox::Console).to receive(:new).with(Readline) do
+      allow(Lox::Console).to(receive(:new).with(Readline)) do
         console
       end
-      allow(Lox::Formatter).to receive(:new).with(each_line) do
+      allow(Lox::Formatter).to(receive(:new).with(each_line)) do
         formatter
       end
     end
 
     it 'writes lines to standard output' do
       read
-      expect(command).to have_received(:call)
+      expect(command).to(have_received(:call))
     end
   end
 
@@ -65,20 +65,20 @@ RSpec.describe Lox::CLI do
     end
 
     before do
-      allow(Lox::Console).to receive(:new) do
+      allow(Lox::Console).to(receive(:new)) do
         console
       end
-      allow(Lox::Scanner).to receive(:new).with(console) do
+      allow(Lox::Scanner).to(receive(:new).with(console)) do
         scanner
       end
-      allow(Lox::Formatter).to receive(:new).with(each_char) do
+      allow(Lox::Formatter).to(receive(:new).with(each_char)) do
         formatter
       end
     end
 
     it 'writes characters to standard output' do
       scan
-      expect(command).to have_received(:call)
+      expect(command).to(have_received(:call))
     end
   end
 
@@ -100,20 +100,20 @@ RSpec.describe Lox::CLI do
     end
 
     before do
-      allow(Lox::Scanner).to receive(:new) do
+      allow(Lox::Scanner).to(receive(:new)) do
         scanner
       end
-      allow(Lox::LexicalAnalyzer).to receive(:new).with(scanner) do
+      allow(Lox::LexicalAnalyzer).to(receive(:new).with(scanner)) do
         lexical_analyzer
       end
-      allow(Lox::Formatter).to receive(:new).with(each_token) do
+      allow(Lox::Formatter).to(receive(:new).with(each_token)) do
         formatter
       end
     end
 
     it 'writes tokens to standard output' do
       lex
-      expect(command).to have_received(:call)
+      expect(command).to(have_received(:call))
     end
   end
 end

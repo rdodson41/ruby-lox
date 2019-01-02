@@ -1,6 +1,6 @@
-require 'lox/formatter'
+require('lox/formatter')
 
-RSpec.describe Lox::Formatter do
+RSpec.describe(Lox::Formatter) do
   subject :formatter do
     described_class.new(objects)
   end
@@ -29,11 +29,11 @@ RSpec.describe Lox::Formatter do
 
     it 'yields strings' do
       expect { |block| formatter.each(&block) }
-        .to yield_successive_args(*strings)
+        .to(yield_successive_args(*strings))
     end
 
     it 'enumerates objects lazily' do
-      expect { each.take(1).force }.to change { terminal }.by(['$ '])
+      expect { each.take(1).force }.to(change { terminal }.by(['$ ']))
     end
   end
 end
