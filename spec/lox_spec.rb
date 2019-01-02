@@ -1,9 +1,5 @@
-require 'lox'
-
-RSpec.describe Lox do
-  describe '::VERSION' do
-    it 'is not nil' do
-      expect(Lox::VERSION).not_to be_nil
-    end
+RSpec.describe(Lox) do
+  it 'has a version number' do
+    expect(Lox::VERSION).not_to(be(nil))
   end
 end

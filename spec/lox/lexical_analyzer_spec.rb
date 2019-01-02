@@ -1,7 +1,7 @@
-require 'lox/lexical_analyzer'
-require 'timeout'
+require('lox/lexical_analyzer')
+require('timeout')
 
-RSpec.describe Lox::LexicalAnalyzer do
+RSpec.describe(Lox::LexicalAnalyzer) do
   subject :lexical_analyzer do
     described_class.new(input)
   end
@@ -16,7 +16,7 @@ RSpec.describe Lox::LexicalAnalyzer do
     end
 
     before do
-      allow(input).to receive(:each_char) do |&block|
+      allow(input).to(receive(:each_char)) do |&block|
         input_characters.each(&block)
       end
     end
@@ -51,7 +51,7 @@ RSpec.describe Lox::LexicalAnalyzer do
 
       it 'yields tokens' do
         expect { |block| each_token.each(&block) }
-          .to yield_successive_args(*tokens)
+          .to(yield_successive_args(*tokens))
       end
     end
 
@@ -68,7 +68,7 @@ RSpec.describe Lox::LexicalAnalyzer do
 
       it 'yields tokens' do
         expect { |block| each_token.each(&block) }
-          .to yield_successive_args(*tokens)
+          .to(yield_successive_args(*tokens))
       end
     end
 
@@ -85,7 +85,7 @@ RSpec.describe Lox::LexicalAnalyzer do
 
       it 'yields tokens' do
         expect { |block| each_token.each(&block) }
-          .to yield_successive_args(*tokens)
+          .to(yield_successive_args(*tokens))
       end
     end
 
@@ -102,7 +102,7 @@ RSpec.describe Lox::LexicalAnalyzer do
 
       it 'yields tokens' do
         expect { |block| each_token.each(&block) }
-          .to yield_successive_args(*tokens)
+          .to(yield_successive_args(*tokens))
       end
     end
 
@@ -112,10 +112,11 @@ RSpec.describe Lox::LexicalAnalyzer do
       end
 
       it 'raises an error' do
-        expect { each_token.to_a }.to raise_error(
-          Lox::LexicalAnalyzer::InvalidCharacter,
-          'Invalid character: &'
-        )
+        expect { each_token.to_a }
+          .to(raise_error(
+                Lox::LexicalAnalyzer::InvalidCharacter,
+                'Invalid character: &'
+              ))
       end
     end
 
@@ -125,10 +126,11 @@ RSpec.describe Lox::LexicalAnalyzer do
       end
 
       it 'raises an error' do
-        expect { each_token.to_a }.to raise_error(
-          Lox::LexicalAnalyzer::UnterminatedString,
-          'Unterminated string: "Hello, world!'
-        )
+        expect { each_token.to_a }
+          .to(raise_error(
+                Lox::LexicalAnalyzer::UnterminatedString,
+                'Unterminated string: "Hello, world!'
+              ))
       end
     end
   end
@@ -148,7 +150,7 @@ RSpec.describe Lox::LexicalAnalyzer do
       end
 
       it 'is nil' do
-        expect(eof).to be_nil
+        expect(eof).to(be_nil)
       end
     end
 
@@ -169,7 +171,7 @@ RSpec.describe Lox::LexicalAnalyzer do
 
       it 'yields tokens' do
         expect { |block| lexical_analyzer.eof(state, lexeme, &block) }
-          .to yield_successive_args(*tokens)
+          .to(yield_successive_args(*tokens))
       end
     end
 
@@ -183,10 +185,11 @@ RSpec.describe Lox::LexicalAnalyzer do
       end
 
       it 'raises an error' do
-        expect { eof }.to raise_error(
-          Lox::LexicalAnalyzer::UnterminatedString,
-          'Unterminated string: "Hello, world!'
-        )
+        expect { eof }
+          .to(raise_error(
+                Lox::LexicalAnalyzer::UnterminatedString,
+                'Unterminated string: "Hello, world!'
+              ))
       end
     end
 
@@ -207,7 +210,7 @@ RSpec.describe Lox::LexicalAnalyzer do
 
       it 'yields tokens' do
         expect { |block| lexical_analyzer.eof(state, lexeme, &block) }
-          .to yield_successive_args(*tokens)
+          .to(yield_successive_args(*tokens))
       end
     end
 
@@ -228,7 +231,7 @@ RSpec.describe Lox::LexicalAnalyzer do
 
       it 'yields tokens' do
         expect { |block| lexical_analyzer.eof(state, lexeme, &block) }
-          .to yield_successive_args(*tokens)
+          .to(yield_successive_args(*tokens))
       end
     end
 
@@ -242,10 +245,11 @@ RSpec.describe Lox::LexicalAnalyzer do
       end
 
       it 'raises an error' do
-        expect { eof }.to raise_error(
-          Lox::LexicalAnalyzer::InvalidState,
-          'Invalid state: invalid'
-        )
+        expect { eof }
+          .to(raise_error(
+                Lox::LexicalAnalyzer::InvalidState,
+                'Invalid state: invalid'
+              ))
       end
     end
   end

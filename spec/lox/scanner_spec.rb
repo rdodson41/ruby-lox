@@ -1,6 +1,6 @@
-require 'lox/scanner'
+require('lox/scanner')
 
-RSpec.describe Lox::Scanner do
+RSpec.describe(Lox::Scanner) do
   subject :scanner do
     described_class.new(input)
   end
@@ -25,14 +25,14 @@ RSpec.describe Lox::Scanner do
     end
 
     before do
-      allow(input).to receive(:each_line) do |&block|
+      allow(input).to(receive(:each_line)) do |&block|
         input_lines.each(&block)
       end
     end
 
     it 'yields characters' do
       expect { |block| each_char.each(&block) }
-        .to yield_successive_args(*characters)
+        .to(yield_successive_args(*characters))
     end
   end
 end

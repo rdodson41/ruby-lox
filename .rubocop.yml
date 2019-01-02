@@ -1,7 +1,6 @@
 require: rubocop-rspec
 
 AllCops:
-  DisplayCopNames: true
   EnabledByDefault: true
   TargetRubyVersion: 2.2
 
@@ -17,10 +16,4 @@ Style/Documentation:
   Enabled: false
 
 Style/DocumentationMethod:
-  Enabled: false
-
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
-Style/MethodCallWithArgsParentheses:
   Enabled: false

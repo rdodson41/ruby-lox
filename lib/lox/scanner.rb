@@ -8,6 +8,7 @@ module Lox
 
     def each_char
       return enum_for(:each_char) unless block_given?
+
       input.each_line do |line|
         line.each_char do |character|
           yield(character)

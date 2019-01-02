@@ -1,6 +1,6 @@
-require 'lox/lexical_analyzer/invalid_character'
-require 'lox/lexical_analyzer/invalid_state'
-require 'lox/lexical_analyzer/unterminated_string'
+require('lox/lexical_analyzer/invalid_character')
+require('lox/lexical_analyzer/invalid_state')
+require('lox/lexical_analyzer/unterminated_string')
 
 module Lox
   class LexicalAnalyzer
@@ -12,6 +12,7 @@ module Lox
 
     def each_token(&block)
       return enum_for(:each_token) unless block_given?
+
       state = :default
       lexeme = nil
       input.each_char do |character|
