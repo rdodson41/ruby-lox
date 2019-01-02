@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    lox (0.1.0)
+    lox (0.1.1)
       thor
 
 GEM
