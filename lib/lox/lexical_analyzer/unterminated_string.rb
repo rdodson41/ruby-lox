@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Lox
   class LexicalAnalyzer
     class UnterminatedString < StandardError

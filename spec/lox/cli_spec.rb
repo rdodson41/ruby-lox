@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require('lox/cli')
 
 RSpec.describe(Lox::CLI) do

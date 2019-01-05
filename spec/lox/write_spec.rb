@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require('lox/write')
 
 RSpec.describe(Lox::Write) do
