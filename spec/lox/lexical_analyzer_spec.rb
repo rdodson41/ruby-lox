@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require('lox/lexical_analyzer')
 require('timeout')
 

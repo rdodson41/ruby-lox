@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require('lox/version')
@@ -41,5 +39,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency('rubocop-rspec')
   spec.add_development_dependency('simplecov')
 
-  spec.required_ruby_version = '~> 2.4'
+  spec.required_ruby_version = '>= 2.2.0'
 end
