@@ -3,6 +3,7 @@ require('lox/formatter')
 require('lox/lexical_analyzer')
 require('lox/scanner')
 require('lox/write')
+require('readline')
 require('thor')
 
 module Lox
