@@ -1,4 +1,10 @@
 require('lox/cli')
+require('lox/console')
+require('lox/formatter')
+require('lox/lexical_analyzer')
+require('lox/scanner')
+require('lox/write')
+require('readline')
 
 RSpec.describe(Lox::CLI) do
   subject :cli do
