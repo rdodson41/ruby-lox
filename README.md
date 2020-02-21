@@ -20,11 +20,15 @@ gem 'lox'
 
 And then execute:
 
-    bundle install
+```bash
+bundle install
+```
 
 Or install it yourself as:
 
-    gem install lox
+```bash
+gem install test
+```
 
 ## Development
 
