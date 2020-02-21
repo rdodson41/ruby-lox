@@ -7,8 +7,8 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/827f986f775a6dbfc4e6/test_coverage)](https://codeclimate.com/github/rdodson41/ruby-lox/test_coverage)
 
 The `lox` gem is an implementation of the
-[Lox Language](https://github.com/munificent/craftinginterpreters/wiki/Lox-implementations)
-which is written in Ruby.
+[Lox Language](https://www.craftinginterpreters.com/the-lox-language.html) that
+is written in Ruby.
 
 ## Installation
 
