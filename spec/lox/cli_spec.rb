@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require('lox/cli')
 require('lox/console')
 require('lox/formatter')
