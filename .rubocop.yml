@@ -17,3 +17,6 @@ Style/Documentation:
 
 Style/DocumentationMethod:
   Enabled: false
+
+Style/MissingElse:
+  Enabled: false
