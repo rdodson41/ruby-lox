@@ -1,13 +1,14 @@
 # Lox
 
 [![Gem Version](https://badge.fury.io/rb/lox.svg)](https://badge.fury.io/rb/lox)
+![Ruby](https://github.com/rdodson41/ruby-lox/workflows/Ruby/badge.svg)
 [![Build Status](https://travis-ci.org/rdodson41/ruby-lox.svg?branch=master)](https://travis-ci.org/rdodson41/ruby-lox)
 [![Maintainability](https://api.codeclimate.com/v1/badges/827f986f775a6dbfc4e6/maintainability)](https://codeclimate.com/github/rdodson41/ruby-lox/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/827f986f775a6dbfc4e6/test_coverage)](https://codeclimate.com/github/rdodson41/ruby-lox/test_coverage)
 
 The `lox` gem is an implementation of the
-[Lox Language](https://github.com/munificent/craftinginterpreters/wiki/Lox-implementations)
-which is written in Ruby.
+[Lox Language](https://www.craftinginterpreters.com/the-lox-language.html) that
+is written in Ruby.
 
 ## Installation
 
@@ -19,11 +20,15 @@ gem 'lox'
 
 And then execute:
 
-    bundle install
+```bash
+bundle install
+```
 
 Or install it yourself as:
 
-    gem install lox
+```bash
+gem install lox
+```
 
 ## Development
 
@@ -42,7 +47,8 @@ version, push git commits and tags, and push the `.gem` file to
 Bug reports and pull requests are welcome on GitHub at
 <https://github.com/rdodson41/ruby-lox>. This project is intended to be a safe,
 welcoming space for collaboration, and contributors are expected to adhere to
-the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+the
+[code of conduct](https://github.com/rdodson41/ruby-lox/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -51,6 +57,6 @@ The gem is available as open source under the terms of the
 
 ## Code of Conduct
 
-Everyone interacting in the Lox project’s codebases, issue trackers, chat rooms
+Everyone interacting in the Lox project's codebases, issue trackers, chat rooms
 and mailing lists is expected to follow the
 [code of conduct](https://github.com/rdodson41/ruby-lox/blob/master/CODE_OF_CONDUCT.md).

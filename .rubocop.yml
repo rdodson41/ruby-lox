@@ -2,7 +2,7 @@ require: rubocop-rspec
 
 AllCops:
   EnabledByDefault: true
-  TargetRubyVersion: 2.2
+  TargetRubyVersion: 2.3
 
 Metrics/BlockLength:
   Exclude:
@@ -16,4 +16,7 @@ Style/Documentation:
   Enabled: false
 
 Style/DocumentationMethod:
+  Enabled: false
+
+Style/MissingElse:
   Enabled: false
